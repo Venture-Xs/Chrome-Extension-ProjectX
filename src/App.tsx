@@ -4,9 +4,19 @@ import Search from "./utils/Search";
 import { Button } from "./components/ui/button";
 import { DropDown } from "./utils/DropDown";
 import { SettingButton } from "./utils/SettingButton";
+import { useEffect } from "react";
 
 function App() {
   //const [count, setCount] = useState(0)
+  useEffect(() => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tab = tabs[0];
+
+      console.log("Current tab:", tab);
+      console.log("Current tab URL:", tab.url);
+      // You can perform further actions with the current tab URL here
+    });
+  }, [])
 
   return (
     <>
