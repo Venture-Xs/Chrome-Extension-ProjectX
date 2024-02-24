@@ -14,7 +14,7 @@ function App() {
         {/*Header */}
         <div className="flex justify-center h-22 p-5 bg-slate-400 ">
           <h1 className="text-4xl font-serif italic  text-black-400 p-2">
-            CAITYLN
+            CAITLYN
           </h1>
 
           <div className=" flex justify-center h-18 py-2 px-1">
@@ -26,16 +26,16 @@ function App() {
           </div>
         </div>
 
-        {/*Summarizer */}
-        <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
-          <div className="h-10 w-100">
+        <div className="flex flex-col gap-1">
+          {/*Summarizer */}
+          <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
             <Button variant="outline">Summarize</Button>
           </div>
-        </div>
 
-        {/*Search */}
-        <div className="flex justify-center items-center">
-          <Search />
+          {/*Search */}
+          <div className="flex justify-evenly">
+            <Search />
+          </div>
         </div>
 
         {/*Footer */}

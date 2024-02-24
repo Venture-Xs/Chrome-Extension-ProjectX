@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 // import { FaMicrophone } from "react-icons/fa";
 import axios from "axios";
+import { PiMicrophoneFill, PiMicrophoneSlashFill } from "react-icons/pi";
+import { MdOutlineFileUpload } from "react-icons/md";
 
 const Search = () => {
   //   const [voiceActive, setVoiceActive] = useState(false);
@@ -70,7 +72,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative border-black border-1">
+    <div className="flex flex-col gap-4">
       <input
         type="text"
         value={question}
@@ -81,35 +83,30 @@ const Search = () => {
           }
         }}
         placeholder="Ask a question"
-        className="w-64 px-4 py-2 text-black rounded-md focus:outline-none"
+        className="w-64 px-4 py-2 text-black rounded-md outline outline-2 outline-offset-2"
       />
-      {/* <button
-        onClick={toggleRecording}
-        className="absolute px-4 py-2 h-10 bg-gray-700 text-white rounded-md"
-      >
-        <FaMicrophone />
-      </button> */}
-      <div>
+
+      <div className="flex justify-between">
         <button
           className="px-4 py-2 h-10 bg-gray-700 text-white rounded-md"
           onClick={startRecording}
           disabled={isRecording}
         >
-          Start Recording
+          <PiMicrophoneFill />
         </button>
         <button
           className="px-4 py-2 h-10 bg-gray-700 text-white rounded-md"
           onClick={stopRecording}
           disabled={!isRecording}
         >
-          Stop Recording
+          <PiMicrophoneSlashFill />
         </button>
         <button
           className="px-4 py-2 h-10 bg-gray-700 text-white rounded-md"
           onClick={uploadRecording}
           disabled={!audioBlob}
         >
-          Upload Recording
+          <MdOutlineFileUpload />
         </button>
       </div>
       {/* {voiceActive && (
