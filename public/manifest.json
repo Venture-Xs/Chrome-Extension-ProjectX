@@ -8,11 +8,13 @@
 
     "permissions": [
         "scripting",
-        "activeTab"
+        "activeTab",
+        "tabs"
     ],
 
     "action": {
-        "default_popup": "index.html"
+        "default_popup": "index.html",
+        "default_title": "Click Me"
         
     },
 
@@ -20,11 +22,11 @@
         "http://*/*",
         "https://*/*"
     ],
-
+    
     "content_scripts":[
         {
             "matches":[
-                "https://*.google.com/*"
+                "<all_urls>"
             ],
             "js":[
                 "contentScript.js"
