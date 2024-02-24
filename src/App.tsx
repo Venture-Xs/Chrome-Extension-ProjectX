@@ -1,6 +1,7 @@
 //import { useState } from 'react'
 
 import { DropDown, } from "./utils/DropDown"
+import { SettingButton } from "./utils/SettingButton"
 
 
 
@@ -9,14 +10,20 @@ function App() {
 
   return (
     <>
-     <div className="h-300 w-200 bg-slate-300">
-      <div className="flex justify-evenly h-24 p-5 bg-slate-400 ">
-        <h1 className="text-4xl font-bold text-black-400 ">Sigma Buddy</h1>
 
-        <div className=" flex justify-center h-18 w-32 bg-red-500 p-2">
+     <div className="h-90px bg-slate-300 overflow-visible">
+      <div className="flex justify-evenly h-22 p-5 bg-slate-400 ">
+        <h1 className="text-4xl font-serif italic  text-black-400 p-2">CAITYLN</h1>
+
+        <div className=" flex justify-center h-18 w-32 p-2">
             <DropDown/>
         </div>
+
+        <div className="flex justify-center h-18 w-18  p-2">
+          <SettingButton/>
+        </div>
       </div>
+      
 
      </div>
     </>
