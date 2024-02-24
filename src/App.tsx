@@ -18,7 +18,23 @@ function App() {
       // You can perform further actions with the current tab URL here
     });
   }, [])
-
+  let data=[
+    {
+      "id":1,
+      "title":"Summary 1",
+      "content":"Yes. It adheres to the WAI-ARIA design pattern."
+    },
+    {
+      "id":2,
+      "title":"Summary 2",
+      "content":"Yes. It adheres to the WAI-ARIA design pattern."
+    },
+    {
+      "id":3,
+      "title":"Summary 3",
+      "content":"Yes. It adheres to the WAI-ARIA design pattern."
+    }
+  ];
   
 
   return (
@@ -55,7 +71,21 @@ function App() {
         <div id="youtube-link"></div>
         <script src="popup.js"></script> */}
 
-        
+        {/*List Builder */}
+        <div className=" bg-slate-50 ">
+          {
+          data.map((item)=>{
+            return (
+              <div className="h-20">
+                  <ListBuilder title={item.title} content={item.content} key={item.id}/>
+              </div>
+              
+            )
+          })
+          }
+
+        </div>
+
       </div>
     </>
   );
