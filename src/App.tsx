@@ -72,11 +72,12 @@ function App() {
         <script src="popup.js"></script> */}
 
         {/*List Builder */}
-        <div className=" bg-slate-50 ">
+        <div className="h-40 flex-col  overflow-auto scrollbar-hide mt-5 p-2 ">
           {
           data.map((item)=>{
             return (
-              <div className="h-20">
+              <div className="h-30 p-2 rounded bg-slate-50">
+                  
                   <ListBuilder title={item.title} content={item.content} key={item.id}/>
               </div>
               
