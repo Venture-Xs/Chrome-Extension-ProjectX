@@ -32,9 +32,17 @@ function App() {
             <Button variant="outline">Summarize</Button>
           </div>
         </div>
+
+        {/*Search */}
         <div className="flex justify-center items-center">
           <Search />
         </div>
+
+        {/*Footer */}
+        <div id="youtube-link"></div>
+        <script src="popup.js"></script>
+        
+        
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 
 const Search = () => {
-  const [voiceActive, setVoiceActive] = useState(false);
+//   const [voiceActive, setVoiceActive] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [isRecording, setIsRecording] = useState(false);
 
@@ -91,8 +91,8 @@ const Search = () => {
       <input
         type="text"
         placeholder="Ask your question..."
-        value={voiceActive ? voiceText : ""}
-        onChange={(event) => setVoiceText(event.target.value)}
+        // value={voiceActive ? voiceText : ""}
+        // onChange={(event) => setVoiceText(event.target.value)}
         className="w-64 px-4 py-2 text-white rounded-md focus:outline-none"
       />
       {/* <button
@@ -135,5 +135,5 @@ const Search = () => {
     </div>
   );
 };
-
+//voiceActive && 
 export default Search;
