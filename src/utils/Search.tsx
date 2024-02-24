@@ -8,7 +8,7 @@ const Search = () => {
   //   const [voiceActive, setVoiceActive] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [isRecording, setIsRecording] = useState(false);
-  const [stream, setStream] = useState<MediaStream | null>(null);
+  const [, setStream] = useState<MediaStream | null>(null);
   const [question, setQuestion] = useState("");
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
