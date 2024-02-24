@@ -13,6 +13,10 @@ type summaryType = {
   title_of_section: string
 }
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
+import { Chat } from "./pages/Chat";
+
+
 function App() {
   //const [count, setCount] = useState(0)
   const [summary, setSummary] = useState<summaryType[]>();
@@ -83,23 +87,41 @@ function App() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1">
+        {/* <div className="flex flex-col gap-1"> */}
           {/*Summarizer */}
-          <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
+          {/* <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
             <Button variant="outline" onClick={getSummary}>Summarize</Button>
-          </div>
+          </div> */}
 
           {/*Search */}
-          <div className="flex justify-evenly">
+          {/* <div className="flex justify-evenly">
             <Search />
-          </div>
-        </div>
-        <Summarize loading={loading} summary={summary} />
+          </div> */}
+        {/* </div> */}
+        
         {/* Footer
         <div id="youtube-link"></div>
         <script src="popup.js"></script> */}
 
         {/*List Builder */}
+
+        <div >
+        <Tabs defaultValue="Summarize" className="w-[400px]">
+
+          <TabsList className="grid w-full grid-cols-2 ">
+            <TabsTrigger value="Summarize" onClick={getSummary} >Summary</TabsTrigger>
+            <TabsTrigger value="Chat" >Chat</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="Summarize">
+            <Summarize loading={loading} summary={summary} />
+          </TabsContent>
+          <TabsContent value="Chat">
+            <Chat />
+          </TabsContent>
+        </Tabs>
+
+        </div>
 
 
       </div>
