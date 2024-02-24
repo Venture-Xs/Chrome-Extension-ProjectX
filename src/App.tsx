@@ -12,16 +12,16 @@ function App() {
     <>
       <div className=" h-[24rem] ">
         {/*Header */}
-        <div className="flex justify-evenly h-22 p-5 bg-slate-400 ">
+        <div className="flex justify-center h-22 p-5 bg-slate-400 ">
           <h1 className="text-4xl font-serif italic  text-black-400 p-2">
             CAITYLN
           </h1>
 
-          <div className=" flex justify-center h-18 w-60 p-2">
+          <div className=" flex justify-center h-18 py-2 px-1">
             <DropDown />
           </div>
 
-          <div className="flex justify-center h-18 w-18  p-2">
+          <div className="flex justify-center h-18 w-18  py-2">
             <SettingButton />
           </div>
         </div>
@@ -41,8 +41,6 @@ function App() {
         {/*Footer */}
         <div id="youtube-link"></div>
         <script src="popup.js"></script>
-        
-        
       </div>
     </>
   );
