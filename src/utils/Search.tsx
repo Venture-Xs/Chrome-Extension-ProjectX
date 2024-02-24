@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import { FaMicrophone } from "react-icons/fa";
 
 const Search = () => {
-  const [voiceActive, setVoiceActive] = useState(false);
-  const [voiceText, setVoiceText] = useState("");
+  // const [voiceActive, setVoiceActive] = useState(false);
+  // const [voiceText, setVoiceText] = useState("");
 
   //   const toggleSearch = () => {
   //     setVoiceActive(!voiceActive);
@@ -38,8 +38,8 @@ const Search = () => {
       <input
         type="text"
         placeholder="Ask your question..."
-        value={voiceActive ? voiceText : ""}
-        onChange={(event) => setVoiceText(event.target.value)}
+        // value={voiceActive ? voiceText : ""}
+        // onChange={(event) => setVoiceText(event.target.value)}
         className="w-64 px-4 py-2 text-white rounded-md focus:outline-none"
       />
       <button
@@ -48,16 +48,16 @@ const Search = () => {
       >
         <FaMicrophone />
       </button>
-      {voiceActive && (
+     {(
         <button
           //   onClick={handleSearch}
           className="absolute top-0 right-16 px-4 py-2 bg-gray-700 text-white rounded-md"
         >
           Speak
         </button>
-      )}
+     )}
     </div>
   );
 };
-
+//voiceActive && 
 export default Search;
