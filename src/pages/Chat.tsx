@@ -67,13 +67,8 @@ export const Chat = (props: { url: string }) => {
                 })}
             </div>
 
-<<<<<<< Updated upstream
-            <div className="h-[62px] p-2 rounded  flex  absolute bottom-1">
-                     <SearchBar />         
-=======
             <div className="h-[62px] p-2 rounded bg-slate-50 flex  absolute bottom-1">
                 <SearchBar text={text} setText={handleInput} handleSubmit={handleSubmit} />
->>>>>>> Stashed changes
             </div>
 
         </div>
