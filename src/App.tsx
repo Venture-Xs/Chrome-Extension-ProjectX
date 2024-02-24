@@ -1,8 +1,8 @@
 //import { useState } from 'react'
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Search from "./utils/Search";
-import { Button } from "./components/ui/button";
+// import Search from "./utils/Search";
+// import { Button } from "./components/ui/button";
 import { DropDown } from "./utils/DropDown";
 import { SettingButton } from "./utils/SettingButton";
 import { Summarize } from "./pages/Summarize";
@@ -21,10 +21,12 @@ function App() {
   //const [count, setCount] = useState(0)
   const [summary, setSummary] = useState<summaryType[]>();
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     // Try to get the summary data from local storage
     try {
+      getURL();
       chrome.storage.session.get(['sum'], (result) => {
 
         if (result.sum) {
@@ -40,6 +42,19 @@ function App() {
 
   }, []);
 
+  const getURL = async () => {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id! },
+      func: () => {
+        document.body.style.backgroundColor = 'green';
+        return window.location.href;
+      }
+    });
+    const url = results[0].result;
+    setUrl(url!);
+  }
+
   const getSummary = async () => {
     setLoading(true);
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -51,6 +66,7 @@ function App() {
       }
     });
     const url = results[0].result;
+    setUrl(url!);
     const postData = {
       url: url,
       isQuery: "False",
@@ -88,17 +104,17 @@ function App() {
         </div>
 
         {/* <div className="flex flex-col gap-1"> */}
-          {/*Summarizer */}
-          {/* <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
+        {/*Summarizer */}
+        {/* <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
             <Button variant="outline" onClick={getSummary}>Summarize</Button>
           </div> */}
 
-          {/*Search */}
-          {/* <div className="flex justify-evenly">
+        {/*Search */}
+        {/* <div className="flex justify-evenly">
             <Search />
           </div> */}
         {/* </div> */}
-        
+
         {/* Footer
         <div id="youtube-link"></div>
         <script src="popup.js"></script> */}
@@ -106,20 +122,20 @@ function App() {
         {/*List Builder */}
 
         <div >
-        <Tabs defaultValue="Summarize" className="w-[400px]">
+          <Tabs defaultValue="Summarize" className="w-[400px]">
 
-          <TabsList className="grid w-full grid-cols-2 ">
-            <TabsTrigger value="Summarize" onClick={getSummary} >Summary</TabsTrigger>
-            <TabsTrigger value="Chat" >Chat</TabsTrigger>
-          </TabsList>
+            <TabsList className="grid w-full grid-cols-2 ">
+              <TabsTrigger value="Summarize" onClick={getSummary} >Summary</TabsTrigger>
+              <TabsTrigger value="Chat" >Chat</TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="Summarize">
-            <Summarize loading={loading} summary={summary} />
-          </TabsContent>
-          <TabsContent value="Chat">
-            <Chat />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="Summarize">
+              <Summarize loading={loading} summary={summary} />
+            </TabsContent>
+            <TabsContent value="Chat">
+              <Chat url={url} />
+            </TabsContent>
+          </Tabs>
 
         </div>
 
