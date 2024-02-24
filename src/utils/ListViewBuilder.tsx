@@ -6,14 +6,14 @@ import {
   } from "@/components/ui/accordion"
 
 
-  export function ListBuilder() {
+  export function ListBuilder(props : { title:string , content:string}) {
 
     return (
         <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger>Summary 1</AccordionTrigger>
+        <AccordionTrigger>{props.title}</AccordionTrigger>
         <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
+          {props.content}
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">

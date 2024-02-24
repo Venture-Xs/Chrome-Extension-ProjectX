@@ -5,6 +5,7 @@ import { Button } from "./components/ui/button";
 import { DropDown } from "./utils/DropDown";
 import { SettingButton } from "./utils/SettingButton";
 import { useEffect } from "react";
+import { ListBuilder } from "./utils/ListViewBuilder";
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -17,6 +18,8 @@ function App() {
       // You can perform further actions with the current tab URL here
     });
   }, [])
+
+  
 
   return (
     <>
@@ -48,9 +51,11 @@ function App() {
           </div>
         </div>
 
-        {/*Footer */}
+        {/* Footer
         <div id="youtube-link"></div>
-        <script src="popup.js"></script>
+        <script src="popup.js"></script> */}
+
+        
       </div>
     </>
   );
