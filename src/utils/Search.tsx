@@ -3,37 +3,20 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 
 const Search = () => {
-//   const [voiceActive, setVoiceActive] = useState(false);
+  //   const [voiceActive, setVoiceActive] = useState(false);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [question, setQuestion] = useState("");
 
-  //   const toggleSearch = () => {
-  //     setVoiceActive(!voiceActive);
-  //   };
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setQuestion(e.currentTarget.value);
+  };
 
-  //   const handleSearch = () => {
-  //     if ('SpeechRecognition' in window) {
-  //       const recognition = new window.SpeechRecognition();
-  //       recognition.continuous = false;
-
-  //       recognition.onresult = (event) => {
-  //         const transcript = event.results[0][0].transcript;
-  //         setVoiceText(transcript);
-  //       };
-
-  //       recognition.onerror = (event) => {
-  //         console.log('Error', event.error);
-  //       };
-
-  //       recognition.onend = () => {
-  //         setVoiceActive(false);
-  //       };
-
-  //       recognition.start();
-  //     } else {
-  //       console.error('SpeechRecognition not supported by this browser');
-  //     }
-  //   };
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    console.log("Submitted question:", question);
+    setQuestion(""); // Clear the input after submission
+  };
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
@@ -90,10 +73,15 @@ const Search = () => {
     <div className="relative border-black border-1">
       <input
         type="text"
-        placeholder="Ask your question..."
-        // value={voiceActive ? voiceText : ""}
-        // onChange={(event) => setVoiceText(event.target.value)}
-        className="w-64 px-4 py-2 text-white rounded-md focus:outline-none"
+        value={question}
+        onChange={handleChange}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit(e);
+          }
+        }}
+        placeholder="Ask a question"
+        className="w-64 px-4 py-2 text-black rounded-md focus:outline-none"
       />
       {/* <button
         onClick={toggleRecording}
@@ -135,5 +123,5 @@ const Search = () => {
     </div>
   );
 };
-//voiceActive && 
+//voiceActive &&
 export default Search;
