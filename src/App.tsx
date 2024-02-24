@@ -1,41 +1,69 @@
 //import { useState } from 'react'
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Search from "./utils/Search";
 import { Button } from "./components/ui/button";
 import { DropDown } from "./utils/DropDown";
 import { SettingButton } from "./utils/SettingButton";
-import { useEffect } from "react";
-import { ListBuilder } from "./utils/ListViewBuilder";
+import { Summarize } from "./pages/Summarize";
+
+type summaryType = {
+  summary_of_section: string,
+  time_stamp: string
+  title_of_section: string
+}
 
 function App() {
   //const [count, setCount] = useState(0)
-  useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tab = tabs[0];
+  const [summary, setSummary] = useState<summaryType[]>();
+  const [loading, setLoading] = useState(false);
 
-      console.log("Current tab:", tab);
-      console.log("Current tab URL:", tab.url);
-      // You can perform further actions with the current tab URL here
-    });
-  }, [])
-  let data=[
-    {
-      "id":1,
-      "title":"Summary 1",
-      "content":"Yes. It adheres to the WAI-ARIA design pattern."
-    },
-    {
-      "id":2,
-      "title":"Summary 2",
-      "content":"Yes. It adheres to the WAI-ARIA design pattern."
-    },
-    {
-      "id":3,
-      "title":"Summary 3",
-      "content":"Yes. It adheres to the WAI-ARIA design pattern."
+  useEffect(() => {
+    // Try to get the summary data from local storage
+    try {
+      chrome.storage.session.get(['sum'], (result) => {
+
+        if (result.sum) {
+          const sum = JSON.parse(result.sum);
+          console.log(sum);
+          setSummary(sum);
+          setLoading(false);
+        }
+      });
+    } catch (e) {
+      console.log(e)
     }
-  ];
-  
+
+  }, []);
+
+  const getSummary = async () => {
+    setLoading(true);
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id! },
+      func: () => {
+        document.body.style.backgroundColor = 'green';
+        return window.location.href;
+      }
+    });
+    const url = results[0].result;
+    const postData = {
+      url: url,
+      isQuery: "False",
+      query: "",
+      generateTest: "False"
+    }
+    const res = await axios.post("https://613d-103-119-241-244.ngrok-free.app/chat_bot", postData, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    const sum = res.data.reply
+    setSummary(res.data.reply);
+    chrome.storage.session.set({ sum: JSON.stringify(sum) });
+    setLoading(false);
+  }
+
 
   return (
     <>
@@ -58,7 +86,7 @@ function App() {
         <div className="flex flex-col gap-1">
           {/*Summarizer */}
           <div className="h-15 flex justify-center items-center bg-slate-50 p-2 ">
-            <Button variant="outline">Summarize</Button>
+            <Button variant="outline" onClick={getSummary}>Summarize</Button>
           </div>
 
           {/*Search */}
@@ -66,26 +94,13 @@ function App() {
             <Search />
           </div>
         </div>
-
+        <Summarize loading={loading} summary={summary} />
         {/* Footer
         <div id="youtube-link"></div>
         <script src="popup.js"></script> */}
 
         {/*List Builder */}
-        <div className="h-40 flex-col  overflow-auto scrollbar-hide mt-5 p-2 ">
-          {
-          data.map((item)=>{
-            return (
-              <div className="h-30 p-2 rounded bg-slate-50">
-                  
-                  <ListBuilder title={item.title} content={item.content} key={item.id}/>
-              </div>
-              
-            )
-          })
-          }
 
-        </div>
 
       </div>
     </>
