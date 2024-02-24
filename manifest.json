@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Extension",
+  "version": "1.0.0",
+  "description": "Chrome Extension to help students in their studies and research",
+
+  "permissions": ["scripting", "activeTab", "tabs"],
+
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Click Me"
+  },
+
+  "host_permissions": ["http://*/*", "https://*/*"],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/extension/contentScript.ts"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "src/extension/background.ts"
+  }
+}

@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-
-
+import { Button } from "../components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +12,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "../components/ui/dropdown-menu"
 
 export function DropDown() {
   return (

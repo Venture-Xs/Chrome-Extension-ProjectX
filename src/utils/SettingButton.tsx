@@ -1,7 +1,6 @@
 import { CiSettings } from "react-icons/ci";
-import { IoIosLogOut } from "react-icons/io";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,10 +14,12 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "../components/ui/dropdown-menu"
 
 export function SettingButton() {
   return (
+
+
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
@@ -70,11 +71,11 @@ export function SettingButton() {
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuItem disabled>API</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-500 flex gap-2">
-          <IoIosLogOut />
+        <DropdownMenuItem>
           Log out
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
