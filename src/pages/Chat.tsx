@@ -15,7 +15,7 @@ export const Chat = () => {
                 <VoiceReply/>
             </div>
 
-            <div className="h-[62px] p-2 rounded bg-slate-50 flex  absolute bottom-1">
+            <div className="h-[62px] p-2 rounded  flex  absolute bottom-1">
                      <SearchBar />         
             </div>
 
